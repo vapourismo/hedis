@@ -34,7 +34,7 @@ import qualified Database.Redis.Cluster as Cluster
 --
 --  Please refer to the Command Type Signatures section of this page for more
 --  information.
-class (MonadRedis m) => RedisCtx m f | m -> f where
+class (MonadRedis m, Functor f) => RedisCtx m f | m -> f where
     returnDecode :: RedisResult a => Reply -> m (f a)
 
 class (Monad m) => MonadRedis m where
